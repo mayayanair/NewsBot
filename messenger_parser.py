@@ -20,4 +20,4 @@ class MessengerParser:
            # self.lng = coordinates['long']
         # else:
             # Normal text message
-            self.text = message['text']
+        self.text = message['text']
