@@ -17,3 +17,22 @@ def send_message(messenger_id, text):
 
     # Send POST request to Facebook Messenger Send API to send text message
     r = requests.post(SEND_API_URL, json=params)
+    
+def send_categories_message(messenger_id, text):
+    # Package params into dictionaries for POST request
+    recipient = {'id':messenger_id}
+    message = {
+        'text':text,
+        'quick_replies':[
+            {
+                'content_type':'location' #what would this manifest as from the user's perspective
+            }
+        ]
+    }
+    params = {
+        'recipient':recipient,
+        'message':message
+    }
+
+    # Send POST request to Facebook Messenger Send API to send coordinates message
+    r = requests.post(SEND_API_URL, json=params)
