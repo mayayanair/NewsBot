@@ -35,13 +35,10 @@ def response_handler(request):
     # return the response to Facebook.
     return response()
 
-def type_handler(user):
+def type_handler(messenger_parser, user):
     # Send coordinates message to receive the user's current location
-    send_categories_message(user.messenger_id, 'Please choose from the following categories of news:')
-     
-    # call some type of dictionary or list of types of news
-
-    #
+    send_categories_message(user.messenger_id, 'Please choose from the following categories of news: International, Sports, Tech & Science, Entertainment, Business, Daily')
+    
      
     # Change the user state to ask_source so the next time the user sends a message, it asks for what source of news they want
     user.state = 'ask_source'
@@ -50,10 +47,25 @@ def type_handler(user):
 def source_handler(user)
 
     # Send message asking where the user wants to go
-    send_source_message(user.messenger_id, 'Where do you want to go?')
+    send_source_message(user.messenger_id, 'Which of the following sources do you want to read:')
+
+    if messenger_parser.text == 'International': 
+       send_message(user.messenger_id, '') #put sources in
+    elif messenger_parser.text == 'Sports': 
+       send_message(user.messenger_id, '') #put sources in
+    elif messenger_parser.text == 'Tech' or 'Science' or 'Tech & Science': 
+       send_message(user.messenger_id, '') #put sources in    
+    elif messenger_parser.text == 'Entertainment': 
+       send_message(user.messenger_id, '') #put sources in
+    elif messenger_parser.text == 'Business': 
+       send_message(user.messenger_id, '') #put sources in
+    elif messenger_parser.text == 'Daily': 
+       send_message(user.messenger_id, '') #put sources in
+    else: 
+       send_message(user.messenger_id, 'Please choose from the following categories of news: International, Sports, Tech & Science, Entertainment, Business, Daily')
 
     # Change the user state to give_result so the next time the user sends a message, it gives what rideshare is cheaper.
-    user.state = 'give_result'
+    user.state = 'ask_order'
     user.save()
 
 def order_handler(messenger_parser, user):
