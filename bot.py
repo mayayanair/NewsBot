@@ -38,7 +38,6 @@ def response_handler(request):
 def type_handler(messenger_parser, user):
     # Send coordinates message to receive the user's current location
     send_categories_message(user.messenger_id, 'Please choose from the following categories of news: International, Sports, Tech & Science, Entertainment, Business, Daily')
-    
      
     # Change the user state to ask_source so the next time the user sends a message, it asks for what source of news they want
     user.state = 'ask_source'
@@ -69,4 +68,8 @@ def source_handler(user)
     user.save()
 
 def order_handler(messenger_parser, user):
+    send_order_message(user.messenger_id, 'Do you want to read the top news, the latest news, or the most popular news?')
+    
 
+def results_handler(messenger_parser, user):
+     
