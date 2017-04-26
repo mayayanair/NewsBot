@@ -41,17 +41,16 @@ def type_handler(user):
      
     # call some type of dictionary or list of types of news
 
+    #
+     
     # Change the user state to ask_source so the next time the user sends a message, it asks for what source of news they want
     user.state = 'ask_source'
     user.save()
 
-def source_handler(messenger_parser, user):
-    # Get user location coordinates from message
-    user.start_lat = messenger_parser.lat
-    user.start_lng = messenger_parser.lng
+def source_handler(user)
 
     # Send message asking where the user wants to go
-    send_message(user.messenger_id, 'Where do you want to go?')
+    send_source_message(user.messenger_id, 'Where do you want to go?')
 
     # Change the user state to give_result so the next time the user sends a message, it gives what rideshare is cheaper.
     user.state = 'give_result'
