@@ -1,3 +1,5 @@
+from __future__ import print_function # DEBUG
+import sys # DEBUG
 from flask import Flask, request, jsonify, g, Response,render_template
 from peewee import *
 import bot
@@ -41,7 +43,8 @@ def webhook():
         else:
             # Here messages in a form of JSON are received, code for this is handled in bot.py
             return bot.response_handler(request.get_json())
-    except:
+    except Exception as e:
+        print(str(e), file=sys.stderr)
         return Response('Application error.')
 
 if __name__ == '__main__':
