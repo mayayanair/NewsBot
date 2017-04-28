@@ -6,6 +6,12 @@ from messenger_api_requests import send_message
 from helpers import response
 from db import User
 
+INTERNATIONAL_CATEGORIES = []
+
+SOURCE_TEXT_TO_API_FRIENDLY_SOURCE_NAME = {
+    'CNN':'cnn'
+
+}
 
 def response_handler(request):
      # Parse request and get the data we want out of it like messenger_id, text, and coordinates.
@@ -43,33 +49,35 @@ def type_handler(messenger_parser, user):
     user.state = 'ask_source'
     user.save()
 
-def source_handler(user)
+def source_handler(user):
 
     # Send message asking where the user wants to go
     send_source_message(user.messenger_id, 'Which of the following sources do you want to read:')
 
     if messenger_parser.text == 'International': 
-       send_message(user.messenger_id, '') #put sources in
+        send_categories_message(user.messenger_id, 'YOUR TEXT HERE', INTERNATIONAL_CATEGORIES) # repeat this for everything
     elif messenger_parser.text == 'Sports': 
-       send_message(user.messenger_id, '') #put sources in
-    elif messenger_parser.text == 'Tech' or 'Science' or 'Tech & Science': 
-       send_message(user.messenger_id, '') #put sources in    
+        send_message(user.messenger_id, '') #put sources in
+    elif messenger_parser.text == 'Tech' or messenger_parser.text == 'Science' or messenger_parser.text == 'Tech & Science': 
+        send_message(user.messenger_id, '') #put sources in    
     elif messenger_parser.text == 'Entertainment': 
-       send_message(user.messenger_id, '') #put sources in
+        send_message(user.messenger_id, '') #put sources in
     elif messenger_parser.text == 'Business': 
-       send_message(user.messenger_id, '') #put sources in
+        send_message(user.messenger_id, '') #put sources in
     elif messenger_parser.text == 'Daily': 
-       send_message(user.messenger_id, '') #put sources in
+        send_message(user.messenger_id, '') #put sources in
     else: 
-       send_message(user.messenger_id, 'Please choose from the following categories of news: International, Sports, Tech & Science, Entertainment, Business, Daily')
-
+        send_message(user.messenger_id, 'Please choose from the following categories of news: International, Sports, Tech & Science, Entertainment, Business, Daily')
+        return
     # Change the user state to give_result so the next time the user sends a message, it gives what rideshare is cheaper.
     user.state = 'ask_order'
     user.save()
 
-def order_handler(messenger_parser, user):
+def results_handler(messenger_parser, user):
     send_order_message(user.messenger_id, 'Do you want to read the top news, the latest news, or the most popular news?')
     
+    if SOURCE_TEXT_TO_API_FRIENDLY_SOURCE_NAME.get(text):
+        # grab that value from dictionary and then do news api 
+    else:
 
-def results_handler(messenger_parser, user):
      
