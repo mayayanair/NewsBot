@@ -3,8 +3,8 @@
 import requests
 
 # Constants
-FB_ACCESS_TOKEN = 'EAADtxV351YoBAP5Ue6AU9KgkMdKjF4n9FQ6RSMWWGIS2pZAqagRIpSwQLL8De3QYIXWHpPoNEKBOl0m6YkeJaHdohBWhw96e5vY7azuXZBtDhfZBe5mcgVNDM2CphZA0r5ZBdfxAw9CiPNif9a9lvLbhWb2PsDflSKMVhYzcwGwZDZD'
-SEND_API_URL = 'https://graph.facebook.com/v2.6/me/messages?access_token=EAADtxV351YoBAP5Ue6AU9KgkMdKjF4n9FQ6RSMWWGIS2pZAqagRIpSwQLL8De3QYIXWHpPoNEKBOl0m6YkeJaHdohBWhw96e5vY7azuXZBtDhfZBe5mcgVNDM2CphZA0r5ZBdfxAw9CiPNif9a9lvLbhWb2PsDflSKMVhYzcwGwZDZD'
+FB_ACCESS_TOKEN = 'EAADtxV351YoBABxqxXzpehpJ8FKXPS5w8XQ5KD4EaNNREQqmjeUyunpAVd7dJhqAZCMCQ3svIdS0ZAY3W7kYaUtiJjzPmMf8XqYEHrsxCnQhHjHIYqmNyvkD40qAKKpD4BfqTwl9Ctoe4UrIO3WFvx2ZB9YQ9L0GDuy9XkAZAgZDZD'
+SEND_API_URL = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + 'EAADtxV351YoBABxqxXzpehpJ8FKXPS5w8XQ5KD4EaNNREQqmjeUyunpAVd7dJhqAZCMCQ3svIdS0ZAY3W7kYaUtiJjzPmMf8XqYEHrsxCnQhHjHIYqmNyvkD40qAKKpD4BfqTwl9Ctoe4UrIO3WFvx2ZB9YQ9L0GDuy9XkAZAgZDZD'
 
 def send_message(messenger_id, text):
     # Package params into dictionaries for POST request
@@ -30,6 +30,7 @@ def send_categories_message(messenger_id, text, categories):
             "payload":"CATEGORY NAME"
         }
         '''
+        quick_replies.append({"content_type":"text", "title":c,"payload":c})
 
     recipient = {'id':messenger_id}
     message = {
